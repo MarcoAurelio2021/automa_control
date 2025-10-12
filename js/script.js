@@ -1,10 +1,10 @@
-let currentIndex = 0;
-const images = document.querySelectorAll('.carousel-img');
-
-function showNextImage() {
-    images[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % images.length;
-    images[currentIndex].classList.add('active');
-}
-
-setInterval(showNextImage, 3000); // troca de imagem a cada 3 segundos
+// Smooth scroll
+document.querySelectorAll('header nav ul li a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});

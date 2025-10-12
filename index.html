@@ -7,64 +7,92 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- HEADER -->
     <header>
-        <h1>Automa Control</h1>
-        <p>Automação residencial e serviços elétricos em Ubá e região</p>
-        <a href="https://wa.me/559999999999" target="_blank" class="btn-contact">Fale Conosco</a>
+        <div class="container">
+            <div class="logo">Automa Control</div>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <!-- CARROSSEL -->
-    <section class="carousel-section">
-        <div class="carousel">
-            <img src="images/img1.jpg" class="carousel-img active" alt="Projeto 1">
-            <img src="images/img2.jpg" class="carousel-img" alt="Projeto 2">
-            <img src="images/img3.jpg" class="carousel-img" alt="Projeto 3">
-        </div>
-    </section>
-
-    <!-- SOBRE -->
-    <section>
-        <h2>Sobre Nós</h2>
-        <p>Automa Control é especialista em automação residencial e serviços elétricos, oferecendo soluções inteligentes, seguras e modernas para sua casa ou empresa em Ubá e região.</p>
-    </section>
-
-    <!-- SERVIÇOS -->
-    <section>
-        <h2>Nossos Serviços</h2>
-        <div class="services">
-            <div class="service-card">
-                <h3>Automação Residencial</h3>
-                <p>Iluminação, persianas, climatização e sistemas inteligentes para sua casa.</p>
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>Soluções elétricas e automação que sua empresa precisa</h2>
+                <p>Garantimos segurança, eficiência e tecnologia de ponta para seu projeto.</p>
+                <a href="#contato" class="btn">Solicitar orçamento</a>
             </div>
-            <div class="service-card">
-                <h3>Instalação Elétrica</h3>
-                <p>Serviços residenciais e industriais com segurança e qualidade.</p>
-            </div>
-            <div class="service-card">
-                <h3>Manutenção e Reparos</h3>
-                <p>Suporte completo para sistemas elétricos e automação residencial.</p>
+            <div class="hero-image">
+                <!-- Substitua pelo seu SVG ou imagem real -->
+                <img src="eletricista.png" alt="Eletricista trabalhando">
             </div>
         </div>
     </section>
 
-    <!-- CONTATO -->
-    <section class="contact">
-        <h2>Entre em Contato</h2>
-        <p>Fale conosco via WhatsApp ou siga nossas redes sociais:</p>
-        <div class="social-links">
-            <a href="https://wa.me/559999999999" target="_blank">WhatsApp</a>
-            <a href="https://www.instagram.com/seuperfil" target="_blank">Instagram</a>
-            <a href="https://www.facebook.com/seuperfil" target="_blank">Facebook</a>
+    <section id="sobre" class="sobre container">
+        <div class="sobre-text">
+            <h2>Sobre nós</h2>
+            <p>Na Automa Control, somos especialistas em soluções elétricas e automação industrial e residencial. Nossa missão é fornecer projetos seguros, eficientes e inovadores, sempre com atenção aos detalhes e qualidade máxima.</p>
         </div>
     </section>
 
-    <!-- RODAPÉ -->
+    <section id="servicos" class="servicos container">
+        <h2>Serviços</h2>
+        <div class="servicos-grid">
+            <div class="servico-card">
+                <h3>Instalação elétrica</h3>
+                <p>Projetos completos, manutenção e modernização de instalações residenciais e comerciais.</p>
+            </div>
+            <div class="servico-card">
+                <h3>Automação residencial</h3>
+                <p>Controle inteligente de iluminação, climatização e segurança para sua casa ou empresa.</p>
+            </div>
+            <div class="servico-card">
+                <h3>Manutenção e suporte</h3>
+                <p>Suporte técnico especializado e manutenção preventiva para evitar problemas futuros.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="depoimentos container">
+        <h2>Depoimentos</h2>
+        <div class="depoimentos-grid">
+            <div class="depoimento-card">
+                <p>"Excelente serviço, equipe muito profissional!"</p>
+                <span>- João Silva</span>
+            </div>
+            <div class="depoimento-card">
+                <p>"Solução eficiente e rápida para nosso projeto de automação."</p>
+                <span>- Maria Santos</span>
+            </div>
+            <div class="depoimento-card">
+                <p>"Recomendo a Automa Control para qualquer projeto elétrico."</p>
+                <span>- Carlos Pereira</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contato">
+        <h2>Entre em contato</h2>
+        <p>Solicite seu orçamento ou tire suas dúvidas. Nossa equipe está pronta para ajudar.</p>
+        <a href="mailto:contato@automacontrol.com.br" class="btn">Enviar e-mail</a>
+        <p>📞 (11) 99999-9999</p>
+        <p>📍 Rua Exemplo, 123 - São Paulo/SP</p>
+    </section>
+
     <footer>
-        © 2025 Automa Control. Todos os direitos reservados.
+        <p>© 2025 Automa Control. Todos os direitos reservados.</p>
+        <div class="social">
+            <a href="#">Instagram</a> | <a href="#">Facebook</a>
+        </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
