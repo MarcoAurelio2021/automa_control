@@ -3,103 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automa Control</title>
+    <title>AutomaControl - Soluções Elétricas e Automação</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
         <div class="container">
-            <div class="logo">Automa<span>Control</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#depoimentos">Depoimentos</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
+            <a href="#" class="logo">Automa<span>Control</span></a>
+            <nav class="nav-menu">
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#contato">Contato</a>
             </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h2>Soluções elétricas e automação que sua empresa precisa</h2>
-                <p>Garantimos segurança, eficiência e tecnologia de ponta para seu projeto.</p>
-                <a href="#contato" class="btn">Solicitar orçamento</a>
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h2>Soluções Inteligentes em Elétrica e Automação Residencial</h2>
+                    <p>Garantimos segurança, eficiência e tecnologia de ponta para sua casa e seu projeto.</p>
+                    <a href="#contato" class="btn">Solicitar Orçamento</a>
+                </div>
+                <div class="hero-image">
+                    <img src="images\img1.jpg" alt="Automação Residencial e Elétrica">
+                </div>
             </div>
-            <div class="hero-image">
-                <!-- Substitua pelo seu SVG ou imagem real -->
-                <img src="images\rpa-768x389.jpg" alt="Eletricista trabalhando">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="sobre" class="sobre container">
-        <div class="sobre-text">
-            <h2>Sobre nós</h2>
-            <p>Na Automa Control, somos especialistas em soluções elétricas e automação industrial e residencial. Nossa missão é fornecer projetos seguros, eficientes e inovadores, sempre com atenção aos detalhes e qualidade máxima.</p>
-        </div>
-    </section>
+        <section id="sobre" class="sobre container">
+            <h2>Sobre Nós</h2>
+            <p>Na AutomaControl, somos especialistas em transformar residências com soluções elétricas e de automação de ponta. Nossa missão é fornecer projetos seguros, eficientes e inovadores, sempre com máxima atenção aos detalhes e qualidade garantida.</p>
+        </section>
 
-    <section id="servicos" class="servicos container">
-        <h2>Serviços</h2>
-        <div class="servicos-grid">
-            <div class="servico-card">
-                <h3>Instalação elétrica</h3>
-                <p>Projetos completos, manutenção e modernização de instalações residenciais e comerciais.</p>
+        <section id="servicos" class="servicos">
+            <div class="container">
+                <h2>Nossos Serviços</h2>
+                <div class="servicos-grid">
+                    <div class="servico-card">
+                        <i class="fas fa-bolt-lightning"></i>
+                        <h3>Instalação Elétrica</h3>
+                        <p>Projetos completos, manutenção e modernização de instalações elétricas residenciais e comerciais.</p>
+                    </div>
+                    <div class="servico-card">
+                        <i class="fas fa-house-signal"></i>
+                        <h3>Automação Residencial</h3>
+                        <p>Controle inteligente de iluminação, climatização e segurança para transformar sua casa em um lar inteligente.</p>
+                    </div>
+                    <div class="servico-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Manutenção e Suporte</h3>
+                        <p>Suporte técnico especializado e manutenção preventiva para garantir o funcionamento perfeito dos seus sistemas.</p>
+                    </div>
+                </div>
             </div>
-            <div class="servico-card">
-                <h3>Automação residencial</h3>
-                <p>Controle inteligente de iluminação, climatização e segurança para sua casa ou empresa.</p>
-            </div>
-            <div class="servico-card">
-                <h3>Manutenção e suporte</h3>
-                <p>Suporte técnico especializado e manutenção preventiva para evitar problemas futuros.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="depoimentos" class="depoimentos container">
-        <h2>Depoimentos</h2>
-        <div class="depoimentos-grid">
-            <div class="depoimento-card">
-                <p>"Excelente serviço, equipe muito profissional!"</p>
-                <span>- João Silva</span>
+        <section id="depoimentos" class="depoimentos container">
+            <h2>Depoimentos</h2>
+            <div class="depoimentos-grid">
+                <div class="depoimento-card">
+                    <p>"Excelente serviço, equipe muito profissional!"</p>
+                    <span>- João Silva</span>
+                </div>
+                <div class="depoimento-card">
+                    <p>"Solução eficiente e rápida para nosso projeto de automação."</p>
+                    <span>- Maria Santos</span>
+                </div>
+                <div class="depoimento-card">
+                    <p>"Recomendo a AutomaControl para qualquer projeto elétrico."</p>
+                    <span>- Carlos Pereira</span>
+                </div>
             </div>
-            <div class="depoimento-card">
-                <p>"Solução eficiente e rápida para nosso projeto de automação."</p>
-                <span>- Maria Santos</span>
+        </section>
+
+        <section id="contato" class="contato">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <p>Solicite seu orçamento ou tire suas dúvidas. Nossa equipe está pronta para ajudar.</p>
+                <div class="contato-grid">
+                    <a href="https://wa.me/5532999408057" target="_blank" class="btn-contato">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <span>WhatsApp (Marco Aurélio)</span>
+                            <strong>(32) 99940-8057</strong>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/5532999948556" target="_blank" class="btn-contato">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <span>WhatsApp (Douglas)</span>
+                            <strong>(32) 99994-8556</strong>
+                        </div>
+                    </a>
+                </div>
+                <div class="localizacao">
+                    <p><i class="fas fa-map-marker-alt"></i> Ubá-MG</p>
+                </div>
             </div>
-            <div class="depoimento-card">
-                <p>"Recomendo a Automa Control para qualquer projeto elétrico."</p>
-                <span>- Carlos Pereira</span>
-            </div>
-        </div>
-    </section>
-
- <section id="contato" class="contato">
-    <h2>Entre em contato</h2>
-    <p>Solicite seu orçamento ou tire suas dúvidas. Nossa equipe está pronta para ajudar.</p>
-
-    <div class="contato-actions">
-        <a href="https://wa.me/5532999408057" target="_blank" class="botao whatsapp">WhatsApp</a>
-        <span class="telefone">📞 (32) 99940-8057</span>
-    </div>
-
-    <div class="contato-actions">
-        <a href="https://wa.me/5532999848556" target="_blank" class="botao whatsapp">WhatsApp</a>
-        <span class="telefone">📞 (32) 99994-8556</span>
-    </div>
-
-    <p>📍 Ubá-MG</p>
-</section>
+        </section>
+    </main>
 
     <footer>
-        <p>© 2025 Automa Control. Todos os direitos reservados.</p>
-        <div class="social">
-            <a href="#">Instagram</a> | <a href="#">Facebook</a>
-        </div>
+        <p>© 2025 AutomaControl. Todos os direitos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
