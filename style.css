@@ -1,0 +1,189 @@
+:root {
+    --primary-color: #1e3a8a; /* Azul */
+    --secondary-color: #f97316; /* Laranja */
+    --text-color: #ffffff;
+    --bg-color: #f4f4f4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* HEADER */
+header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.btn-contact {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-contact:hover {
+    background-color: darkorange;
+}
+
+/* CARROSSEL */
+.carousel-section {
+    max-width: 1000px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.carousel-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-img.active {
+    opacity: 1;
+}
+
+/* SEÇÃO */
+section {
+    padding: 3rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+section p {
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* SERVIÇOS */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex: 1 1 250px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* CONTATO */
+.contact {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 3rem 1rem;
+}
+
+.contact h2 {
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    background-color: darkorange;
+}
+
+/* RODAPÉ */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #222;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .services {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel {
+        height: 250px;
+    }
+}
