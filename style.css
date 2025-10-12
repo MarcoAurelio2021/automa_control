@@ -27,8 +27,12 @@ body {
 /* Header */
 header {
     background: var(--azul);
-    color: #fff;
+    color: #ff6600;
     padding: 15px 0;
+}
+
+header span {
+    color: #f7f7f7;
 }
 
 header .container {
@@ -186,11 +190,47 @@ header nav ul li a:hover {
 }
 
 /* Contato */
+/* Contato */
 .contato {
     background: var(--bg-light);
     padding: 60px 0;
     text-align: center;
 }
+
+.contato h2 {
+    color: var(--azul);
+    margin-bottom: 15px;
+}
+
+.contato-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.botao.whatsapp {
+    background: var(--laranja);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.botao.whatsapp:hover {
+    background: darkorange;
+}
+
+.telefone {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
 
 /* Footer */
 footer {
