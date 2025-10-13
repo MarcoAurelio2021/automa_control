@@ -1,33 +1,31 @@
-// --- LÓGICA PARA O MENU HAMBÚRGUER (MOBILE) ---
+// MENU HAMBÚRGUER
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    // Adiciona ou remove a classe 'active' para mostrar/esconder o menu
-    navMenu.classList.toggle('active');
-});
+hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+document.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
 
-// Fecha o menu ao clicar em um link (para navegação na mesma página)
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-    });
-});
-
-
-// --- LÓGICA PARA ROLAGEM SUAVE (SMOOTH SCROLL) ---
-// Esta parte é uma versão aprimorada da sua, selecionando todos os links que começam com '#'
+// SCROLL SUAVE
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+  });
+});
 
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
+// CARROSSEL HERO
+window.addEventListener('load', () => {
+  const heroImages = document.querySelectorAll('.hero-image img');
+  let current = 0;
+  let interval = setInterval(nextImage, 3000);
 
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
+  function nextImage() {
+    heroImages.forEach(img => img.classList.remove('active'));
+    current = (current + 1) % heroImages.length;
+    heroImages[current].classList.add('active');
+  }
+
+  // Pausar ao passar o mouse
+  document.querySelector('.hero-image').addEventListener('mouseenter', () => clearInterval(interval));
+  document.querySelector('.hero-image').addEventListener('mouseleave', () => interval = setInterval(nextImage, 3000));
 });
