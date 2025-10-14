@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<link rel="icon" href="./images/android-chrome-192x192.png" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutomaControl - Soluções Elétricas e Automação</title>
+  <link rel="icon" href="./images/android-chrome-192x192.png" type="image/x-icon">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AutomaControl - Soluções Elétricas e Automação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -75,20 +74,69 @@
     </div>
   </section>
 
-  <section id="depoimentos" class="depoimentos container">
-    <h2>Depoimentos</h2>
-    <div class="depoimentos-grid">
-      <div class="depoimento-card">
-        <p>"Excelente serviço, equipe muito profissional!"</p>
-        <span>- João Silva</span>
+  <!-- ========== DEPOIMENTOS ========== -->
+<section id="depoimentos" class="depoimentos container">
+  <h2>Depoimentos</h2>
+
+  <div class="carousel-wrapper">
+    <button class="scroll-btn left" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+    <div id="depoimentos-carousel" class="carousel"></div>
+    <button class="scroll-btn right" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <div class="depoimento-form-container">
+    <h3>Deixe seu depoimento</h3>
+    <div id="user-info" class="user-info">Faça login para deixar um depoimento.</div>
+
+    <div class="depoimento-actions">
+      <button id="btn-login-google" class="btn-login google"><i class="fab fa-google"></i> Entrar com Google</button>
+      <button id="btn-login-apple" class="btn-login apple"><i class="fab fa-apple"></i> Entrar com Apple</button>
+      <button id="btn-logout" class="btn-outline" style="display:none;"><i class="fas fa-sign-out-alt"></i> Sair</button>
+    </div>
+
+    <div id="depoimento-area" style="display:none;">
+      <textarea id="depoimento-text" placeholder="Escreva seu depoimento..." maxlength="300"></textarea>
+
+      <div class="rating">
+        <i class="fa-star fa-regular star" data-value="1"></i>
+        <i class="fa-star fa-regular star" data-value="2"></i>
+        <i class="fa-star fa-regular star" data-value="3"></i>
+        <i class="fa-star fa-regular star" data-value="4"></i>
+        <i class="fa-star fa-regular star" data-value="5"></i>
       </div>
-      <div class="depoimento-card">
-        <p>"Solução eficiente e rápida para nosso projeto de automação."</p>
-        <span>- Maria Santos</span>
+
+      <button id="btn-enviar" class="btn">Enviar Depoimento</button>
+    </div>
+  </div>
+</section>
+
+
+    <!-- FORMULÁRIO -->
+    <div class="add-depoimento-container" id="depo-form-area">
+      <h3>Deixe seu depoimento</h3>
+
+      <div id="auth-area" style="text-align:center;">
+        <button id="btn-login-google" class="btn-login google"><i class="fab fa-google"></i> Entrar com Google</button>
+        <button id="btn-login-apple" class="btn-login apple"><i class="fab fa-apple"></i> Entrar com Apple</button>
       </div>
-      <div class="depoimento-card">
-        <p>"Recomendo a AutomaControl para qualquer projeto elétrico."</p>
-        <span>- Carlos Pereira</span>
+
+      <div id="user-area" class="hidden" style="margin-top:12px;">
+        <div id="user-info" class="user-info"></div>
+
+        <textarea id="depoimento-text" placeholder="Escreva seu depoimento..." maxlength="300"></textarea>
+
+        <div class="rating-stars" id="rating-stars" aria-label="Avaliação">
+          <i class="fa-regular fa-star" data-value="1" role="button" aria-label="1 estrela"></i>
+          <i class="fa-regular fa-star" data-value="2" role="button" aria-label="2 estrelas"></i>
+          <i class="fa-regular fa-star" data-value="3" role="button" aria-label="3 estrelas"></i>
+          <i class="fa-regular fa-star" data-value="4" role="button" aria-label="4 estrelas"></i>
+          <i class="fa-regular fa-star" data-value="5" role="button" aria-label="5 estrelas"></i>
+        </div>
+
+        <div style="margin-top:12px;">
+          <button id="btn-send-dep" class="btn btn-enviar">Enviar Depoimento</button>
+          <button id="btn-logout" class="btn-sair">Sair</button>
+        </div>
       </div>
     </div>
   </section>
@@ -124,6 +172,9 @@
   <p>© 2025 AutomaControl. Todos os direitos reservados.</p>
 </footer>
 
-<script src="js/script.js" defer></script>
+<!-- Firebase init (módulos CDN) -->
+<script type="module" src="js/firebaseConfig.js"></script>
+<!-- Lógica principal -->
+<script type="module" src="js/script.js"></script>
 </body>
 </html>

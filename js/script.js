@@ -1,63 +1,234 @@
-// MENU HAMBÚRGUER
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+import {
+  auth,
+  db,
+  googleProvider,
+  serverTimestamp
+} from "./firebaseConfig.js";
+import {
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  orderBy,
+  query
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
-hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
-document.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
+const btnLoginGoogle = document.getElementById("btn-login-google");
+const btnLoginApple = document.getElementById("btn-login-apple");
+const btnLogout = document.getElementById("btn-logout");
+const userInfo = document.getElementById("user-info");
+const depoimentoArea = document.getElementById("depoimento-area");
+const depoimentoText = document.getElementById("depoimento-text");
+const btnEnviar = document.getElementById("btn-enviar");
+const stars = document.querySelectorAll(".star");
+const carousel = document.getElementById("depoimentos-carousel");
 
-// SCROLL SUAVE
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e){
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+let selectedRating = 0;
+let currentUser = null;
+
+// ========== ESTRELAS (formulário de envio) ==========
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+    selectedRating = parseInt(star.dataset.value);
+    atualizarEstrelas();
   });
+
+  star.addEventListener("mouseenter", () => {
+    const hoverValue = parseInt(star.dataset.value);
+    stars.forEach(s => {
+      const val = parseInt(s.dataset.value);
+      s.classList.toggle("fa-solid", val <= hoverValue);
+      s.classList.toggle("hovered", val <= hoverValue);
+      s.classList.toggle("fa-regular", val > hoverValue);
+    });
+  });
+
+  star.addEventListener("mouseleave", atualizarEstrelas);
 });
 
-// CARROSSEL HERO COM SWIPE
-window.addEventListener('load', () => {
-  const heroImages = document.querySelectorAll('.hero-image img');
-  const heroContainer = document.querySelector('.hero-image');
-  let current = 0;
-  let interval = setInterval(nextImage, 3000);
+function atualizarEstrelas() {
+  stars.forEach(s => {
+    const val = parseInt(s.dataset.value);
+    s.classList.toggle("fa-solid", val <= selectedRating);
+    s.classList.toggle("selected", val <= selectedRating);
+    s.classList.toggle("fa-regular", val > selectedRating);
+    s.classList.remove("hovered");
+  });
+}
 
-  function nextImage() {
-    heroImages.forEach(img => img.classList.remove('active'));
-    current = (current + 1) % heroImages.length;
-    heroImages[current].classList.add('active');
+// ========== LOGIN ==========
+btnLoginGoogle.addEventListener("click", async () => {
+  try {
+    await signInWithPopup(auth, googleProvider);
+  } catch (error) {
+    console.error("Erro ao fazer login:", error);
+    alert("Erro ao entrar. Verifique o domínio autorizado no Firebase.");
+  }
+});
+
+btnLoginApple.addEventListener("click", () => {
+  alert("Login com Apple em breve!");
+});
+
+btnLogout.addEventListener("click", async () => {
+  await signOut(auth);
+});
+
+// ========== MONITOR LOGIN ==========
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    currentUser = user;
+    userInfo.innerHTML = `
+      <img src="${user.photoURL}" alt="${user.displayName}" class="user-photo">
+      <strong>${user.displayName}</strong>
+    `;
+    btnLoginGoogle.style.display = "none";
+    btnLoginApple.style.display = "none";
+    btnLogout.style.display = "inline-block";
+    depoimentoArea.style.display = "block";
+  } else {
+    currentUser = null;
+    userInfo.textContent = "Faça login para deixar um depoimento.";
+    btnLoginGoogle.style.display = "inline-block";
+    btnLoginApple.style.display = "inline-block";
+    btnLogout.style.display = "none";
+    depoimentoArea.style.display = "none";
   }
 
-  function prevImage() {
-    heroImages.forEach(img => img.classList.remove('active'));
-    current = (current - 1 + heroImages.length) % heroImages.length;
-    heroImages[current].classList.add('active');
+  carregarDepoimentos();
+});
+
+// ========== ENVIAR DEPOIMENTO ==========
+btnEnviar.addEventListener("click", async () => {
+  const texto = depoimentoText.value.trim();
+
+  if (!currentUser) {
+    alert("Você precisa fazer login para enviar um depoimento.");
+    return;
   }
 
-  // PAUSAR AUTOPLAY AO HOVER
-  heroContainer.addEventListener('mouseenter', () => clearInterval(interval));
-  heroContainer.addEventListener('mouseleave', () => interval = setInterval(nextImage, 3000));
+  if (!texto) {
+    alert("Por favor, escreva seu depoimento.");
+    return;
+  }
 
-  // SWIPE TOUCH
-  let startX = 0;
-  let endX = 0;
+  if (selectedRating === 0) {
+    alert("Selecione uma avaliação com estrelas.");
+    return;
+  }
 
-  heroContainer.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  });
+  try {
+    await addDoc(collection(db, "depoimentos"), {
+      uid: currentUser.uid,
+      nome: currentUser.displayName,
+      foto: currentUser.photoURL,
+      texto,
+      estrelas: selectedRating,
+      criadoEm: serverTimestamp()
+    });
 
-  heroContainer.addEventListener('touchmove', e => {
-    endX = e.touches[0].clientX;
-  });
+    depoimentoText.value = "";
+    selectedRating = 0;
+    stars.forEach(s => s.classList.remove("fa-solid", "selected"));
+    stars.forEach(s => s.classList.add("fa-regular"));
+    alert("Depoimento enviado com sucesso!");
 
-  heroContainer.addEventListener('touchend', () => {
-    const diff = startX - endX;
-    if(Math.abs(diff) > 50) { // mínimo para considerar swipe
-      if(diff > 0) {
-        nextImage(); // swipe para esquerda
-      } else {
-        prevImage(); // swipe para direita
-      }
+    carregarDepoimentos(); // recarrega lista
+  } catch (error) {
+    console.error("Erro ao enviar depoimento:", error);
+  }
+});
+
+// ========== FUNÇÃO AUXILIAR PARA RENDERIZAR ESTRELAS ==========
+function renderizarEstrelas(qtd) {
+  let html = "";
+  for (let i = 1; i <= 5; i++) {
+    if (i <= qtd) {
+      html += `<i class="fa-solid fa-star" style="color:#ffb400;"></i>`;
+    } else {
+      html += `<i class="fa-regular fa-star" style="color:#ccc;"></i>`;
     }
-    startX = 0;
-    endX = 0;
-  });
-});
+  }
+  return html;
+}
+
+// ========== CARREGAR DEPOIMENTOS ==========
+async function carregarDepoimentos() {
+  carousel.innerHTML = "<p>Carregando depoimentos...</p>";
+
+  try {
+    const q = query(collection(db, "depoimentos"), orderBy("criadoEm", "desc"));
+    const querySnapshot = await getDocs(q);
+    carousel.innerHTML = "";
+
+    if (querySnapshot.empty) {
+      carousel.innerHTML = "<p>Nenhum depoimento ainda. Seja o primeiro!</p>";
+      return;
+    }
+
+    querySnapshot.forEach((docSnap) => {
+      const d = docSnap.data();
+      const isOwner = currentUser && currentUser.uid === d.uid;
+
+      const card = document.createElement("div");
+      card.classList.add("depoimento-card");
+
+      const estrelasHTML = renderizarEstrelas(d.estrelas || 0);
+
+      card.innerHTML = `
+        <div class="depoimento-top">
+          <img src="${d.foto}" alt="${d.nome}" class="user-photo">
+          <div>
+            <strong>${d.nome}</strong><br>
+            <div class="stars">${estrelasHTML}</div>
+          </div>
+        </div>
+        <p class="texto">"${d.texto}"</p>
+        ${isOwner ? `<button class="btn-excluir" data-id="${docSnap.id}">Excluir</button>` : ""}
+      `;
+
+      carousel.appendChild(card);
+    });
+
+    // Botão de exclusão
+    document.querySelectorAll(".btn-excluir").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = btn.dataset.id;
+        if (confirm("Deseja excluir seu depoimento?")) {
+          try {
+            await deleteDoc(doc(db, "depoimentos", id));
+            carregarDepoimentos();
+          } catch (error) {
+            console.error("Erro ao excluir:", error);
+            alert("Erro ao excluir: " + error.message);
+          }
+        }
+      });
+    });
+
+  } catch (error) {
+    console.error("Erro ao carregar depoimentos:", error);
+    carousel.innerHTML = "<p>Erro ao carregar depoimentos.</p>";
+  }
+}
+
+// ================== HERO IMAGE CAROUSEL ==================
+const heroImages = document.querySelectorAll('.hero-image img');
+let currentHero = 0;
+
+function trocarImagemHero() {
+  heroImages[currentHero].classList.remove('active');
+  currentHero = (currentHero + 1) % heroImages.length;
+  heroImages[currentHero].classList.add('active');
+}
+
+// Troca de imagem a cada 5 segundos
+if (heroImages.length > 0) {
+  setInterval(trocarImagemHero, 3000);
+}
