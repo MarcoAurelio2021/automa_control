@@ -75,68 +75,37 @@
   </section>
 
   <!-- ========== DEPOIMENTOS ========== -->
-<section id="depoimentos" class="depoimentos container">
-  <h2>Depoimentos</h2>
+  <section id="depoimentos" class="depoimentos container">
+    <h2>Depoimentos</h2>
 
-  <div class="carousel-wrapper">
-    <button class="scroll-btn left" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-    <div id="depoimentos-carousel" class="carousel"></div>
-    <button class="scroll-btn right" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
-  </div>
-
-  <div class="depoimento-form-container">
-    <h3>Deixe seu depoimento</h3>
-    <div id="user-info" class="user-info">Faça login para deixar um depoimento.</div>
-
-    <div class="depoimento-actions">
-      <button id="btn-login-google" class="btn-login google"><i class="fab fa-google"></i> Entrar com Google</button>
-      <button id="btn-login-apple" class="btn-login apple"><i class="fab fa-apple"></i> Entrar com Apple</button>
-      <button id="btn-logout" class="btn-outline" style="display:none;"><i class="fas fa-sign-out-alt"></i> Sair</button>
+    <div class="carousel-wrapper">
+      <button class="scroll-btn left" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+      <div id="depoimentos-carousel" class="carousel"></div>
+      <button class="scroll-btn right" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <div id="depoimento-area" style="display:none;">
-      <textarea id="depoimento-text" placeholder="Escreva seu depoimento..." maxlength="300"></textarea>
-
-      <div class="rating">
-        <i class="fa-star fa-regular star" data-value="1"></i>
-        <i class="fa-star fa-regular star" data-value="2"></i>
-        <i class="fa-star fa-regular star" data-value="3"></i>
-        <i class="fa-star fa-regular star" data-value="4"></i>
-        <i class="fa-star fa-regular star" data-value="5"></i>
-      </div>
-
-      <button id="btn-enviar" class="btn">Enviar Depoimento</button>
-    </div>
-  </div>
-</section>
-
-
-    <!-- FORMULÁRIO -->
-    <div class="add-depoimento-container" id="depo-form-area">
+    <div class="depoimento-form-container">
       <h3>Deixe seu depoimento</h3>
+      <div id="user-info" class="user-info">Faça login para deixar um depoimento.</div>
 
-      <div id="auth-area" style="text-align:center;">
+      <div class="depoimento-actions">
         <button id="btn-login-google" class="btn-login google"><i class="fab fa-google"></i> Entrar com Google</button>
         <button id="btn-login-apple" class="btn-login apple"><i class="fab fa-apple"></i> Entrar com Apple</button>
+        <button id="btn-logout" class="btn-outline" style="display:none;"><i class="fas fa-sign-out-alt"></i> Sair</button>
       </div>
 
-      <div id="user-area" class="hidden" style="margin-top:12px;">
-        <div id="user-info" class="user-info"></div>
-
+      <div id="depoimento-area" style="display:none;">
         <textarea id="depoimento-text" placeholder="Escreva seu depoimento..." maxlength="300"></textarea>
 
-        <div class="rating-stars" id="rating-stars" aria-label="Avaliação">
-          <i class="fa-regular fa-star" data-value="1" role="button" aria-label="1 estrela"></i>
-          <i class="fa-regular fa-star" data-value="2" role="button" aria-label="2 estrelas"></i>
-          <i class="fa-regular fa-star" data-value="3" role="button" aria-label="3 estrelas"></i>
-          <i class="fa-regular fa-star" data-value="4" role="button" aria-label="4 estrelas"></i>
-          <i class="fa-regular fa-star" data-value="5" role="button" aria-label="5 estrelas"></i>
+        <div class="rating">
+          <i class="fa-star fa-regular star" data-value="1"></i>
+          <i class="fa-star fa-regular star" data-value="2"></i>
+          <i class="fa-star fa-regular star" data-value="3"></i>
+          <i class="fa-star fa-regular star" data-value="4"></i>
+          <i class="fa-star fa-regular star" data-value="5"></i>
         </div>
 
-        <div style="margin-top:12px;">
-          <button id="btn-send-dep" class="btn btn-enviar">Enviar Depoimento</button>
-          <button id="btn-logout" class="btn-sair">Sair</button>
-        </div>
+        <button id="btn-enviar" class="btn">Enviar Depoimento</button>
       </div>
     </div>
   </section>
