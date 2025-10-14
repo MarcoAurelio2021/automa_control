@@ -1,19 +1,16 @@
-// MENU HAMBÚRGUER
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
 hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
 document.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
 
-// SCROLL SUAVE
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  anchor.addEventListener('click', function(e){
     e.preventDefault();
     document.querySelector(this.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
   });
 });
 
-// CARROSSEL HERO
 window.addEventListener('load', () => {
   const heroImages = document.querySelectorAll('.hero-image img');
   let current = 0;
@@ -25,7 +22,6 @@ window.addEventListener('load', () => {
     heroImages[current].classList.add('active');
   }
 
-  // Pausar ao passar o mouse
   document.querySelector('.hero-image').addEventListener('mouseenter', () => clearInterval(interval));
   document.querySelector('.hero-image').addEventListener('mouseleave', () => interval = setInterval(nextImage, 3000));
 });
